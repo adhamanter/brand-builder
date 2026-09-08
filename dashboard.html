@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Brand Builder — Dashboard</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            background: #070707;
+
+            color: white;
+
+            min-height: 100vh;
+        }
+
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+
+        button {
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            min-height: 75px;
+
+            padding: 15px 35px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            background: #0b0b0b;
+
+            border-bottom: 1px solid #222;
+        }
+
+
+        .logo {
+            font-size: 18px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+
+        .logo span {
+            color: #666;
+
+            margin-right: 5px;
+        }
+
+
+        .header-right {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .user-name {
+            color: #888;
+
+            font-size: 12px;
+
+            margin-left: 5px;
+        }
+
+
+        .status {
+            color: #666;
+
+            font-size: 11px;
+        }
+
+
+        .open-store,
+        .logout-button {
+            border: none;
+
+            padding: 10px 16px;
+
+            border-radius: 6px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .open-store {
+            background: white;
+
+            color: black;
+        }
+
+
+        .open-store:hover {
+            background: #ddd;
+
+            transform: translateY(-2px);
+        }
+
+
+        .logout-button {
+            background: #181818;
+
+            color: #aaa;
+
+            border: 1px solid #292929;
+        }
+
+
+        .logout-button:hover {
+            background: white;
+
+            color: black;
+        }
+
+
+        /* =========================
+           DASHBOARD
+        ========================= */
+
+        .dashboard {
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding: 45px 25px;
+        }
+
+
+        .dashboard-title {
+            margin-bottom: 35px;
+        }
+
+
+        .eyebrow {
+            color: #666;
+
+            font-size: 9px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .dashboard-title h1 {
+            font-size: 42px;
+
+            letter-spacing: -2px;
+        }
+
+
+        .dashboard-title p {
+            color: #666;
+
+            font-size: 13px;
+
+            margin-top: 10px;
+        }
+
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .stat {
+            background: #0e0e0e;
+
+            border: 1px solid #222;
+
+            border-radius: 10px;
+
+            padding: 22px;
+        }
+
+
+        .stat span {
+            display: block;
+
+            color: #666;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .stat strong {
+            font-size: 28px;
+        }
+
+
+        /* =========================
+           GRID
+        ========================= */
+
+        .dashboard-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 20px;
+        }
+
+
+        .card {
+            background: #0e0e0e;
+
+            border: 1px solid #222;
+
+            border-radius: 10px;
+
+            padding: 25px;
+        }
+
+
+        .card.full {
+            grid-column: 1 / -1;
+        }
+
+
+        .card-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+
+        .card-header h2 {
+            font-size: 17px;
+        }
+
+
+        .card-header span {
+            color: #555;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            color: #777;
+
+            font-size: 11px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .form-group input {
+            width: 100%;
+
+            padding: 13px;
+
+            background: #080808;
+
+            border: 1px solid #292929;
+
+            border-radius: 7px;
+
+            color: white;
+
+            outline: none;
+
+            font-size: 13px;
+
+            transition: 0.3s;
+        }
+
+
+        .form-group input:focus {
+            border-color: #777;
+        }
+
+
+        .save-button {
+            width: 100%;
+
+            padding: 13px;
+
+            background: white;
+
+            color: black;
+
+            border: none;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+
+            font-size: 13px;
+
+            transition: 0.3s;
+        }
+
+
+        .save-button:hover {
+            background: #ddd;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           QUICK ACTIONS
+        ========================= */
+
+        .quick-action {
+            width: 100%;
+
+            padding: 14px;
+
+            margin-bottom: 10px;
+
+            background: #151515;
+
+            color: white;
+
+            border: 1px solid #292929;
+
+            border-radius: 7px;
+
+            font-size: 12px;
+
+            transition: 0.3s;
+        }
+
+
+        .quick-action:hover {
+            background: #fff;
+
+            color: #000;
+        }
+
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .products {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fill, minmax(220px, 1fr));
+
+            gap: 15px;
+        }
+
+
+        .product {
+            background: #080808;
+
+            border: 1px solid #222;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+        }
+
+
+        .product img {
+            width: 100%;
+
+            height: 230px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        .product-info {
+            padding: 15px;
+        }
+
+
+        .product-info h3 {
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .price {
+            color: #888;
+
+            font-size: 12px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .product-buttons {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 8px;
+        }
+
+
+        .edit-button,
+        .delete-button {
+            padding: 10px;
+
+            border-radius: 6px;
+
+            font-size: 11px;
+
+            border: 1px solid #292929;
+
+            transition: 0.3s;
+        }
+
+
+        .edit-button {
+            background: #fff;
+
+            color: #000;
+        }
+
+
+        .edit-button:hover {
+            background: #ccc;
+        }
+
+
+        .delete-button {
+            background: #171717;
+
+            color: #aaa;
+        }
+
+
+        .delete-button:hover {
+            background: #fff;
+
+            color: #000;
+        }
+
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        .empty {
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+            border: 1px dashed #292929;
+
+            border-radius: 8px;
+
+            color: #555;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        #message {
+            margin-top: 25px;
+
+            text-align: center;
+
+            color: #888;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.75);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 9999;
+        }
+
+
+        .modal.active {
+            display: flex;
+        }
+
+
+        .modal-box {
+            width: 100%;
+
+            max-width: 450px;
+
+            background: #101010;
+
+            border: 1px solid #292929;
+
+            border-radius: 12px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.6);
+        }
+
+
+        .modal-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+
+        .modal-header h2 {
+            font-size: 18px;
+        }
+
+
+        .close-button {
+            width: 35px;
+
+            height: 35px;
+
+            border-radius: 6px;
+
+            background: #191919;
+
+            color: white;
+
+            border: 1px solid #292929;
+
+            font-size: 18px;
+        }
+
+
+        .modal-buttons {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+
+        .cancel-button {
+            padding: 13px;
+
+            background: #191919;
+
+            color: white;
+
+            border: 1px solid #292929;
+
+            border-radius: 7px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            header {
+                padding: 15px 20px;
+
+                align-items: flex-start;
+            }
+
+
+            .header-right {
+                flex-wrap: wrap;
+
+                justify-content: flex-end;
+            }
+
+
+            .status {
+                display: none;
+            }
+
+
+            .user-name {
+                width: 100%;
+
+                text-align: right;
+            }
+
+
+            .dashboard {
+                padding: 30px 15px;
+            }
+
+
+            .dashboard-title h1 {
+                font-size: 34px;
+            }
+
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .card.full {
+                grid-column: auto;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .logo {
+                font-size: 14px;
+            }
+
+
+            .open-store,
+            .logout-button {
+                padding: 9px 11px;
+
+                font-size: 10px;
+            }
+
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+
+        <div class="logo">
+
+            BRAND<span>BUILDER</span>
+
+        </div>
+
+
+        <div class="header-right">
+
+
+            <span
+                id="userName"
+                class="user-name"
+            >
+                —
+            </span>
+
+
+            <span class="status">
+
+                ● لوحة التحكم
+
+            </span>
+
+
+            <button
+                class="open-store"
+                onclick="openStore()"
+            >
+
+                🌐 فتح المتجر
+
+            </button>
+
+
+            <button
+                class="logout-button"
+                onclick="logout()"
+            >
+
+                🚪 خروج
+
+            </button>
+
+
+        </div>
+
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="dashboard">
+
+
+        <div class="dashboard-title">
+
+
+            <p class="eyebrow">
+
+                YOUR WEBSITE
+
+            </p>
+
+
+            <h1>
+
+                لوحة التحكم
+
+            </h1>
+
+
+            <p>
+
+                تحكم في متجرك ومنتجاتك من مكان واحد.
+
+            </p>
+
+
+        </div>
+
+
+        <!-- =========================
+             STATS
+        ========================= -->
+
+        <section class="stats">
+
+
+            <div class="stat">
+
+                <span>
+                    WEBSITE
+                </span>
+
+
+                <strong id="websiteId">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span>
+                    PRODUCTS
+                </span>
+
+
+                <strong id="productCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span>
+                    STATUS
+                </span>
+
+
+                <strong>
+                    LIVE
+                </strong>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================
+             DASHBOARD GRID
+        ========================= -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- BRAND -->
+
+            <div class="card">
+
+
+                <div class="card-header">
+
+                    <h2>
+                        بيانات البراند
+                    </h2>
+
+
+                    <span>
+                        EDIT
+                    </span>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        اسم البراند
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="editBrandName"
+                        placeholder="اسم البراند"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        وصف البراند
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="editBrandDescription"
+                        placeholder="وصف البراند"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        رقم واتساب
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="editWhatsapp"
+                        placeholder="01234567890"
+                    >
+
+                </div>
+
+
+                <button
+                    class="save-button"
+                    onclick="updateWebsite()"
+                >
+
+                    💾 حفظ بيانات البراند
+
+                </button>
+
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="card">
+
+
+                <div class="card-header">
+
+                    <h2>
+                        إجراءات سريعة
+                    </h2>
+
+
+                    <span>
+                        ACTIONS
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="quick-action"
+                    onclick="openStore()"
+                >
+
+                    🌐 فتح المتجر
+
+                </button>
+
+
+                <button
+                    class="quick-action"
+                    onclick="goToBuilder()"
+                >
+
+                    ➕ إضافة منتج جديد
+
+                </button>
+
+
+            </div>
+
+
+            <!-- PRODUCTS -->
+
+            <div class="card full">
+
+
+                <div class="card-header">
+
+                    <h2>
+                        منتجات المتجر
+                    </h2>
+
+
+                    <span>
+                        PRODUCTS
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="productsContainer"
+                    class="products"
+                >
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <p id="message"></p>
+
+
+    </main>
+
+
+    <!-- =========================
+         EDIT PRODUCT MODAL
+    ========================= -->
+
+    <div
+        id="editModal"
+        class="modal"
+    >
+
+
+        <div class="modal-box">
+
+
+            <div class="modal-header">
+
+
+                <h2>
+                    تعديل المنتج
+                </h2>
+
+
+                <button
+                    class="close-button"
+                    onclick="closeEditModal()"
+                >
+
+                    ×
+
+                </button>
+
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    اسم المنتج
+                </label>
+
+
+                <input
+                    type="text"
+                    id="editProductName"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    السعر
+                </label>
+
+
+                <input
+                    type="number"
+                    id="editProductPrice"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    رابط صورة المنتج
+                </label>
+
+
+                <input
+                    type="text"
+                    id="editProductImage"
+                >
+
+            </div>
+
+
+            <div class="modal-buttons">
+
+
+                <button
+                    class="save-button"
+                    onclick="saveProductEdit()"
+                >
+
+                    💾 حفظ
+
+                </button>
+
+
+                <button
+                    class="cancel-button"
+                    onclick="closeEditModal()"
+                >
+
+                    إلغاء
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+
+        // =========================
+        // VARIABLES
+        // =========================
+
+        let websiteId = null;
+
+        let editingProductId = null;
+
+
+        // =========================
+        // CHECK LOGIN
+        // =========================
+
+        checkLogin();
+
+
+        async function checkLogin() {
+
+            try {
+
+                const response =
+                    await fetch("/api/me");
+
+
+                if (!response.ok) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                if (!data.success) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                document.getElementById(
+                    "userName"
+                ).textContent =
+                    "👤 " + data.user.name;
+
+
+                loadDashboard();
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                window.location.href =
+                    "login.html";
+
+            }
+
+        }
+
+
+        // =========================
+        // LOAD DASHBOARD
+        // =========================
+
+        async function loadDashboard() {
+
+            const savedWebsiteId =
+                localStorage.getItem(
+                    "currentWebsiteId"
+                );
+
+
+            if (!savedWebsiteId) {
+
+                document.getElementById(
+                    "message"
+                ).textContent =
+                    "مفيش متجر محفوظ. اعمل متجرك الأول من الـBuilder.";
+
+                return;
+
+            }
+
+
+            websiteId =
+                Number(savedWebsiteId);
+
+
+            document.getElementById(
+                "websiteId"
+            ).textContent =
+                "#" + websiteId;
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `/api/website/${websiteId}`
+                    );
+
+
+                if (!response.ok) {
+
+                    localStorage.removeItem(
+                        "currentWebsiteId"
+                    );
+
+
+                    document.getElementById(
+                        "message"
+                    ).textContent =
+                        "مفيش متجر مرتبط بالحساب ده. اعمل متجرك الأول.";
+
+                    return;
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                if (!data.success) {
+
+                    throw new Error(
+                        "Website not found"
+                    );
+
+                }
+
+
+                const website =
+                    data.website;
+
+
+                const products =
+                    data.products;
+
+
+                // =========================
+                // BRAND DATA
+                // =========================
+
+                document.getElementById(
+                    "editBrandName"
+                ).value =
+                    website.name;
+
+
+                document.getElementById(
+                    "editBrandDescription"
+                ).value =
+                    website.description || "";
+
+
+                document.getElementById(
+                    "editWhatsapp"
+                ).value =
+                    website.whatsapp || "";
+
+
+                // =========================
+                // PRODUCT COUNT
+                // =========================
+
+                document.getElementById(
+                    "productCount"
+                ).textContent =
+                    products.length;
+
+
+                // =========================
+                // PRODUCTS
+                // =========================
+
+                const container =
+                    document.getElementById(
+                        "productsContainer"
+                    );
+
+
+                container.innerHTML = "";
+
+
+                if (products.length === 0) {
+
+                    container.innerHTML = `
+
+                        <div class="empty">
+
+                            مفيش منتجات لسه 👕
+
+                            <br><br>
+
+                            أضف أول منتج من الـBuilder.
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                products.forEach(product => {
+
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    div.className =
+                        "product";
+
+
+                    div.innerHTML = `
+
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}"
+                        >
+
+
+                        <div class="product-info">
+
+                            <h3>
+                                ${product.name}
+                            </h3>
+
+
+                            <p class="price">
+                                ${product.price} جنيه
+                            </p>
+
+
+                            <div class="product-buttons">
+
+                                <button
+                                    class="edit-button"
+                                    onclick="openEditModal(
+                                        ${product.id},
+                                        '${escapeForAttribute(product.name)}',
+                                        '${product.price}',
+                                        '${escapeForAttribute(product.image)}'
+                                    )"
+                                >
+
+                                    ✏️ تعديل
+
+                                </button>
+
+
+                                <button
+                                    class="delete-button"
+                                    onclick="deleteProduct(${product.id})"
+                                >
+
+                                    🗑 حذف
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+
+                    container.appendChild(div);
+
+                });
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                document.getElementById(
+                    "message"
+                ).textContent =
+                    "❌ حصل خطأ في تحميل بيانات المتجر.";
+
+            }
+
+        }
+
+
+        // =========================
+        // ESCAPE TEXT
+        // =========================
+
+        function escapeForAttribute(text) {
+
+            return String(text)
+                .replace(/\\/g, "\\\\")
+                .replace(/'/g, "\\'");
+
+        }
+
+
+        // =========================
+        // UPDATE WEBSITE
+        // =========================
+
+        async function updateWebsite() {
+
+            const name =
+                document.getElementById(
+                    "editBrandName"
+                ).value.trim();
+
+
+            const description =
+                document.getElementById(
+                    "editBrandDescription"
+                ).value.trim();
+
+
+            const whatsapp =
+                document.getElementById(
+                    "editWhatsapp"
+                ).value.trim();
+
+
+            if (!name) {
+
+                alert(
+                    "اكتب اسم البراند"
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `/api/website/${websiteId}`,
+                        {
+
+                            method: "PUT",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body: JSON.stringify({
+
+                                name:
+                                    name,
+
+                                description:
+                                    description,
+
+                                whatsapp:
+                                    whatsapp
+
+                            })
+
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (!response.ok ||
+                    !result.success) {
+
+                    throw new Error(
+                        "Update failed"
+                    );
+
+                }
+
+
+                alert(
+                    "✅ تم حفظ بيانات البراند"
+                );
+
+
+                loadDashboard();
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                alert(
+                    "❌ حصل خطأ أثناء حفظ البيانات"
+                );
+
+            }
+
+        }
+
+
+        // =========================
+        // OPEN PRODUCT EDIT
+        // =========================
+
+        function openEditModal(
+            productId,
+            name,
+            price,
+            image
+        ) {
+
+            editingProductId =
+                productId;
+
+
+            document.getElementById(
+                "editProductName"
+            ).value =
+                name;
+
+
+            document.getElementById(
+                "editProductPrice"
+            ).value =
+                price;
+
+
+            document.getElementById(
+                "editProductImage"
+            ).value =
+                image;
+
+
+            document.getElementById(
+                "editModal"
+            ).classList.add(
+                "active"
+            );
+
+        }
+
+
+        // =========================
+        // CLOSE MODAL
+        // =========================
+
+        function closeEditModal() {
+
+            editingProductId =
+                null;
+
+
+            document.getElementById(
+                "editModal"
+            ).classList.remove(
+                "active"
+            );
+
+        }
+
+
+        // =========================
+        // SAVE PRODUCT EDIT
+        // =========================
+
+        async function saveProductEdit() {
+
+            if (!editingProductId) {
+
+                return;
+
+            }
+
+
+            const name =
+                document.getElementById(
+                    "editProductName"
+                ).value.trim();
+
+
+            const price =
+                document.getElementById(
+                    "editProductPrice"
+                ).value;
+
+
+            const image =
+                document.getElementById(
+                    "editProductImage"
+                ).value.trim();
+
+
+            if (!name ||
+                !price ||
+                !image) {
+
+                alert(
+                    "اكتب بيانات المنتج كاملة"
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `/api/product/${editingProductId}`,
+                        {
+
+                            method: "PUT",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body: JSON.stringify({
+
+                                name:
+                                    name,
+
+                                price:
+                                    Number(price),
+
+                                image:
+                                    image
+
+                            })
+
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (!response.ok ||
+                    !result.success) {
+
+                    throw new Error(
+                        "Update product failed"
+                    );
+
+                }
+
+
+                alert(
+                    "✅ تم تعديل المنتج"
+                );
+
+
+                closeEditModal();
+
+
+                loadDashboard();
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                alert(
+                    "❌ حصل خطأ أثناء تعديل المنتج"
+                );
+
+            }
+
+        }
+
+
+        // =========================
+        // DELETE PRODUCT
+        // =========================
+
+        async function deleteProduct(productId) {
+
+            const confirmDelete =
+                confirm(
+                    "متأكد إنك عايز تحذف المنتج؟"
+                );
+
+
+            if (!confirmDelete) {
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `/api/product/${productId}`,
+                        {
+
+                            method: "DELETE"
+
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (!response.ok ||
+                    !result.success) {
+
+                    throw new Error(
+                        "Delete failed"
+                    );
+
+                }
+
+
+                alert(
+                    "✅ تم حذف المنتج"
+                );
+
+
+                loadDashboard();
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                alert(
+                    "❌ حصل خطأ أثناء حذف المنتج"
+                );
+
+            }
+
+        }
+
+
+        // =========================
+        // OPEN STORE
+        // =========================
+
+        function openStore() {
+
+            if (!websiteId) {
+
+                alert(
+                    "مفيش متجر محفوظ"
+                );
+
+                return;
+
+            }
+
+
+            window.open(
+                `/store.html?id=${websiteId}`,
+                "_blank"
+            );
+
+        }
+
+
+        // =========================
+        // GO TO BUILDER
+        // =========================
+
+        function goToBuilder() {
+
+            window.location.href =
+                "/index.html";
+
+        }
+
+
+        // =========================
+        // LOGOUT
+        // =========================
+
+        async function logout() {
+
+            try {
+
+                await fetch(
+                    "/api/logout",
+                    {
+                        method: "POST"
+                    }
+                );
+
+            } catch (error) {
+
+                console.error(error);
+
+            }
+
+
+            localStorage.removeItem(
+                "currentWebsiteId"
+            );
+
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // =========================
+        // CLOSE MODAL OUTSIDE
+        // =========================
+
+        document.getElementById(
+            "editModal"
+        ).addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    event.target === this
+                ) {
+
+                    closeEditModal();
+
+                }
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

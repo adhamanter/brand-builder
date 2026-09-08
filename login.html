@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Brand Builder — تسجيل الدخول</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #070707;
+
+            color: white;
+
+            font-family: Arial, sans-serif;
+
+            padding: 20px;
+
+        }
+
+
+        .container {
+
+            width: 100%;
+
+            max-width: 420px;
+
+        }
+
+
+        .logo {
+
+            text-align: center;
+
+            font-size: 22px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .logo span {
+
+            color: #666;
+
+        }
+
+
+        .card {
+
+            background: #0e0e0e;
+
+            border: 1px solid #222;
+
+            border-radius: 12px;
+
+            padding: 30px;
+
+        }
+
+
+        .eyebrow {
+
+            color: #666;
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        h1 {
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .description {
+
+            color: #666;
+
+            font-size: 13px;
+
+            margin-bottom: 30px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            color: #888;
+
+            font-size: 11px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 14px;
+
+            background: #080808;
+
+            border: 1px solid #292929;
+
+            border-radius: 7px;
+
+            color: white;
+
+            outline: none;
+
+            font-size: 13px;
+
+        }
+
+
+        input:focus {
+
+            border-color: #777;
+
+        }
+
+
+        button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: white;
+
+            color: black;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+
+            transition: 0.3s;
+
+        }
+
+
+        button:hover {
+
+            background: #ddd;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        #message {
+
+            text-align: center;
+
+            font-size: 12px;
+
+            margin-top: 18px;
+
+            color: #aaa;
+
+            min-height: 18px;
+
+        }
+
+
+        .register-link {
+
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: #666;
+
+            font-size: 12px;
+
+        }
+
+
+        .register-link a {
+
+            color: white;
+
+            text-decoration: none;
+
+        }
+
+
+        .register-link a:hover {
+
+            text-decoration: underline;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <div class="logo">
+
+            BRAND<span>BUILDER</span>
+
+        </div>
+
+
+        <div class="card">
+
+
+            <p class="eyebrow">
+
+                WELCOME BACK
+
+            </p>
+
+
+            <h1>
+
+                تسجيل الدخول
+
+            </h1>
+
+
+            <p class="description">
+
+                ادخل لحسابك وكمل بناء متجرك.
+
+            </p>
+
+
+            <div class="form-group">
+
+                <label>
+
+                    البريد الإلكتروني
+
+                </label>
+
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="example@email.com"
+                    dir="ltr"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+
+                    كلمة المرور
+
+                </label>
+
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="كلمة المرور"
+                    dir="ltr"
+                >
+
+            </div>
+
+
+            <button onclick="login()">
+
+                تسجيل الدخول
+
+            </button>
+
+
+            <p id="message"></p>
+
+
+            <div class="register-link">
+
+                معندكش حساب؟
+
+                <a href="register.html">
+
+                    إنشاء حساب
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+        async function login() {
+
+            const email =
+                document.getElementById("email")
+                    .value
+                    .trim();
+
+
+            const password =
+                document.getElementById("password")
+                    .value;
+
+
+            const message =
+                document.getElementById("message");
+
+
+            if (!email || !password) {
+
+                message.textContent =
+                    "❌ اكتب الإيميل والباسورد";
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/login",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body: JSON.stringify({
+
+                                email:
+                                    email,
+
+                                password:
+                                    password
+
+                            })
+
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (!response.ok ||
+                    !result.success) {
+
+                    message.textContent =
+                        "❌ " + result.message;
+
+                    return;
+
+                }
+
+
+                message.textContent =
+                    "✅ تم تسجيل الدخول";
+
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        "index.html";
+
+                }, 700);
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                message.textContent =
+                    "❌ حصل خطأ في الاتصال بالسيرفر";
+
+            }
+
+        }
+
+
+        // الضغط على Enter لتسجيل الدخول
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    login();
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

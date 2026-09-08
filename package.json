@@ -1,0 +1,14 @@
+{
+  "name": "brand-builder",
+  "version": "1.0.0",
+  "description": "Brand Builder",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0"
+  }
+}
