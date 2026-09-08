@@ -444,30 +444,21 @@ app.post(
 // =========================
 // GET WEBSITE
 // =========================
-
 app.get(
     "/api/website/:id",
-    requireLogin,
     (req, res) => {
 
         const websiteId =
             req.params.id;
-
 
         const website =
             db.prepare(`
                 SELECT *
                 FROM websites
                 WHERE id = ?
-                AND user_id = ?
             `).get(
-
-                websiteId,
-
-                req.session.userId
-
+                websiteId
             );
-
 
         if (!website) {
 
@@ -481,7 +472,6 @@ app.get(
 
         }
 
-
         const products =
             db.prepare(`
                 SELECT *
@@ -491,7 +481,6 @@ app.get(
             `).all(
                 websiteId
             );
-
 
         res.json({
 
@@ -505,91 +494,6 @@ app.get(
 
     }
 );
-
-
-// =========================
-// UPDATE WEBSITE
-// =========================
-
-app.put(
-    "/api/website/:id",
-    requireLogin,
-    (req, res) => {
-
-        const websiteId =
-            req.params.id;
-
-
-        const {
-            name,
-            description,
-            whatsapp
-        } = req.body;
-
-
-        if (!name) {
-
-            return res.status(400).json({
-
-                success: false,
-
-                message: "اسم البراند مطلوب"
-
-            });
-
-        }
-
-
-        const result =
-            db.prepare(`
-                UPDATE websites
-
-                SET
-                    name = ?,
-                    description = ?,
-                    whatsapp = ?
-
-                WHERE id = ?
-                AND user_id = ?
-            `).run(
-
-                name,
-
-                description || "",
-
-                whatsapp || "",
-
-                websiteId,
-
-                req.session.userId
-
-            );
-
-
-        if (result.changes === 0) {
-
-            return res.status(404).json({
-
-                success: false,
-
-                message: "الموقع غير موجود"
-
-            });
-
-        }
-
-
-        res.json({
-
-            success: true,
-
-            message: "تم تحديث بيانات البراند"
-
-        });
-
-    }
-);
-
 
 // =========================
 // ADD PRODUCT
