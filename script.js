@@ -31,45 +31,63 @@ if (savedWebsiteId) {
 
 
 // تغيير اسم البراند في المعاينة
-brandName.addEventListener("input", function () {
+if (brandName) {
+    brandName.addEventListener("input", function () {
 
-    const name =
-        brandName.value || "اسم البراند";
+        const name =
+            brandName.value || "اسم البراند";
 
-    previewBrand.textContent = name;
+        if (previewBrand) {
+            previewBrand.textContent = name;
+        }
 
-    previewTitle.textContent = name;
+        if (previewTitle) {
+            previewTitle.textContent = name;
+        }
 
-});
+    });
+}
 
 
 // تغيير وصف البراند في المعاينة
-brandDescription.addEventListener("input", function () {
+if (brandDescription) {
+    brandDescription.addEventListener("input", function () {
 
-    previewDescription.textContent =
-        brandDescription.value || "وصف البراند";
+        if (previewDescription) {
+            previewDescription.textContent =
+                brandDescription.value || "وصف البراند";
+        }
 
-});
+    });
+}
 
 
 // إنشاء رابط واتساب
-whatsapp.addEventListener("input", function () {
+if (whatsapp) {
+    whatsapp.addEventListener("input", function () {
 
-    let number =
-        whatsapp.value.replace(/\D/g, "");
+        let number =
+            whatsapp.value.replace(/\D/g, "");
 
-    if (number.startsWith("01")) {
-        number = "2" + number;
-    }
+        if (number.startsWith("01")) {
+            number = "2" + number;
+        }
 
-    whatsappButton.href =
-        "https://wa.me/" + number;
+        if (whatsappButton) {
+            whatsappButton.href =
+                "https://wa.me/" + number;
+        }
 
-});
+    });
+}
 
 
 // إنشاء الموقع
 async function createWebsite() {
+
+    if (!brandName || !brandDescription || !whatsapp) {
+        return;
+    }
 
     const name =
         brandName.value || "اسم البراند";
@@ -124,10 +142,13 @@ async function createWebsite() {
 
 
             // رسالة النجاح
-            document.getElementById(
-                "successMessage"
-            ).textContent =
-                "✅ تم إنشاء موقعك بنجاح";
+            const successMessage =
+                document.getElementById("successMessage");
+
+            if (successMessage) {
+                successMessage.textContent =
+                    "✅ تم إنشاء موقعك بنجاح";
+            }
 
 
             // إنشاء رابط المتجر
@@ -220,10 +241,13 @@ async function createWebsite() {
         console.error(error);
 
 
-        document.getElementById(
-            "successMessage"
-        ).textContent =
-            "❌ حصل خطأ في الاتصال بالسيرفر";
+        const successMessage =
+            document.getElementById("successMessage");
+
+        if (successMessage) {
+            successMessage.textContent =
+                "❌ حصل خطأ في الاتصال بالسيرفر";
+        }
 
     }
 
@@ -243,14 +267,27 @@ function copyWebsiteLink(url) {
 // إضافة منتج
 async function addProduct() {
 
+    const productName =
+        document.getElementById("productName");
+
+    const productPrice =
+        document.getElementById("productPrice");
+
+    const productImage =
+        document.getElementById("productImage");
+
+    if (!productName || !productPrice || !productImage) {
+        return;
+    }
+
     const name =
-        document.getElementById("productName").value;
+        productName.value;
 
     const price =
-        document.getElementById("productPrice").value;
+        productPrice.value;
 
     const image =
-        document.getElementById("productImage").value;
+        productImage.value;
 
 
     if (!name || !price || !image) {
@@ -305,6 +342,10 @@ async function addProduct() {
                     "productsContainer"
                 );
 
+            if (!container) {
+                return;
+            }
+
 
             const product =
                 document.createElement("div");
@@ -339,17 +380,9 @@ async function addProduct() {
             container.appendChild(product);
 
 
-            document.getElementById(
-                "productName"
-            ).value = "";
-
-            document.getElementById(
-                "productPrice"
-            ).value = "";
-
-            document.getElementById(
-                "productImage"
-            ).value = "";
+            productName.value = "";
+            productPrice.value = "";
+            productImage.value = "";
 
 
             alert("✅ تم حفظ المنتج");
