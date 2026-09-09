@@ -743,11 +743,21 @@ app.delete(
 // =========================
 // SERVER
 // =========================
+const server = app.listen(PORT, () => {
+    console.log("=================================");
+    console.log("SERVER IS RUNNING");
+    console.log("http://localhost:3000");
+    console.log("=================================");
+});
 
-app.listen(PORT, () => {
+server.on("error", (error) => {
+    console.error("SERVER ERROR:", error);
+});
 
-    console.log(
-        `Server running on http://localhost:${PORT}`
-    );
+process.on("uncaughtException", (error) => {
+    console.error("UNCAUGHT ERROR:", error);
+});
 
+process.on("unhandledRejection", (error) => {
+    console.error("UNHANDLED REJECTION:", error);
 });
